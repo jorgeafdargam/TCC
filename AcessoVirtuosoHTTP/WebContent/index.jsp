@@ -9,7 +9,7 @@
 <body>
 
 	<h3 align="center">Sistema de Acesso Local ao BD Openlink Virtuoso</h3>
-	<p align="center">Clique abaixo no que deseja.</p>
+	<p align="center">Clique abaixo no que deseja..</p>
 	<br />
 	<a href="">Inserir ou deletar um grafo</a>
 	<br />
