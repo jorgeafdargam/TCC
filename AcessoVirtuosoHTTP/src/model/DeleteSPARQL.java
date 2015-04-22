@@ -11,7 +11,7 @@ import virtuoso.jena.driver.VirtuosoQueryExecution;
 import virtuoso.jena.driver.VirtuosoQueryExecutionFactory;
 import virtuoso.jena.driver.VirtuosoUpdateFactory;
 import virtuoso.jena.driver.VirtuosoUpdateRequest;
-import control.ADOVirtuoso;
+import control.DAOVirtuoso;
 import control.LimpaGrafo;
 
 public class DeleteSPARQL {
@@ -29,7 +29,7 @@ public class DeleteSPARQL {
 	}
 
 	public void delete(){
-		VirtGraph set = ADOVirtuoso.ADO_Virtuoso();
+		VirtGraph set = DAOVirtuoso.DAO_Virtuoso();
 		//LimpaGrafo.Limpa_Grafo(set);   
 
 		System.out.println("\nexecute: DELETE FROM GRAPH <http://test1> { <aa> <bb> 'cc' }");

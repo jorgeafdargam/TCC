@@ -26,8 +26,10 @@ package model;
 import com.hp.hpl.jena.query.*;
 import com.hp.hpl.jena.rdf.model.RDFNode;
 
-import control.ADOVirtuoso;
+import control.DAOVirtuoso;
+import control.ExibeGrafo;
 import control.LimpaGrafo;
+import view.ExibeGrafoConsole;
 import virtuoso.jena.driver.*;
 
 public class VirtuosoSPARQL {
@@ -39,7 +41,7 @@ public class VirtuosoSPARQL {
 		String str = null;
 		VirtuosoUpdateRequest vur = null;
 
-		VirtGraph set = ADOVirtuoso.ADO_Virtuoso();
+		VirtGraph set = DAOVirtuoso.DAO_Virtuoso();
 		LimpaGrafo.Limpa_Grafo(set);            
  
 		System.out.println("\nexecute: INSERT INTO GRAPH <http://test1> { Sujeito: " + suj 
@@ -51,20 +53,10 @@ public class VirtuosoSPARQL {
 
 		/*			STEP 3			*/
 		/*		Select all data in virtuoso	*/
-		System.out.println("\nexecute: SELECT * FROM <http://test1> WHERE { ?s ?p ?o }");
-		Query sparql = QueryFactory.create("SELECT * FROM <http://test1> WHERE { ?s ?p ?o }");
-
-		/*			STEP 4			*/
-		VirtuosoQueryExecution vqe = VirtuosoQueryExecutionFactory.create (sparql, set);
-
-		ResultSet results = vqe.execSelect();
-		while (results.hasNext()) {
-			QuerySolution rs = results.nextSolution();
-			RDFNode s = rs.get("s");
-			RDFNode p = rs.get("p");
-			RDFNode o = rs.get("o");
-			System.out.println(" { " + s + " " + p + " " + o + " . }");
-		}
+		
+		ExibeGrafo grafo = new ExibeGrafo();
+		ResultSet results = grafo.getResults();
+		ExibeGrafoConsole.ExibeConsole(results);
 
 /*
 		System.out.println("\nexecute: DELETE FROM GRAPH <http://test1> { <aa> <bb> 'cc' }");

@@ -11,10 +11,13 @@
 	<h3 align="center">Sistema de Acesso Local ao BD Openlink Virtuoso</h3>
 	<p align="center">Clique abaixo no que deseja..</p>
 	<br />
-	<a href="">Inserir ou deletar um grafo</a>
+	<a href="">Manipular grafo: Inserir, deletar ou modificar um grafo.</a>
 	<br />
 	<br />
-	<a href="page1.jsp">Inserir, modificar ou deletar recurso de um
-		grafo</a>
+	<a href="page1.jsp">Manipular recursos: Inserir, modificar ou
+		deletar recurso de um grafo.</a>
+	<form id=Input action="ExibeInitGrafo" method="post">
+		<input type="submit" title="Exibir Grafo" value="Enviar" /> <br />
+	</form>
 </body>
 </html>

@@ -12,7 +12,7 @@ import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.rdf.model.RDFNode;
 
-import control.ADOVirtuoso;
+import control.DAOVirtuoso;
 import control.LimpaGrafo;
 
 public class InsertSPARQL {
@@ -30,7 +30,7 @@ public class InsertSPARQL {
 	}
 
 	public void insert(){
-		VirtGraph set = ADOVirtuoso.ADO_Virtuoso();
+		VirtGraph set = DAOVirtuoso.DAO_Virtuoso();
 		//LimpaGrafo.Limpa_Grafo(set);            
 
 		System.out.println("\nexecute: INSERT INTO GRAPH <http://test1> { Sujeito: " + suj 
