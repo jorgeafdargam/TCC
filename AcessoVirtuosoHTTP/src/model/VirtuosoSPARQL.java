@@ -24,8 +24,6 @@
 package model;
 
 import com.hp.hpl.jena.query.*;
-import com.hp.hpl.jena.rdf.model.RDFNode;
-
 import control.DAOVirtuoso;
 import control.ExibeGrafo;
 import control.LimpaGrafo;
