@@ -21,7 +21,6 @@ public class ExibeGrafo {
 		Query sparql = QueryFactory.create("SELECT * FROM <http://test1> WHERE { ?s ?p ?o }");
 		VirtuosoQueryExecution vqe = VirtuosoQueryExecutionFactory.create (sparql, set);
 		results = vqe.execSelect();
-		// ExibeGrafoConsole.ExibeConsole(results);
 	}
 
 	public ResultSet getResults() {

@@ -39,7 +39,4 @@ public class InputServlet extends HttpServlet {
 		
 		VirtuosoSPARQL virt = new VirtuosoSPARQL(this.sujeito, this.predicado, this.objeto);
 	}
-	
-	
-	
 }
