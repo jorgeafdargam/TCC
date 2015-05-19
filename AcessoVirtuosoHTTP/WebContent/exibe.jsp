@@ -5,15 +5,13 @@
 <%@ page import="com.hp.hpl.jena.query.ResultSet" %>
 <%@ page import="com.hp.hpl.jena.rdf.model.RDFNode" %>
 
-<% Class.forName("sun.jdbc.odbc.JdbcOdbcDriver"); %>
-
 <HTML>
     <HEAD>
-        <TITLE>Selecting Publishers From a Database</TITLE>
+        <TITLE>Busca Web Semântica</TITLE>
     </HEAD>
 
     <BODY>
-        <H1>Selecting Publishers From a Database</H1>
+        <H1>Resultado da busca no banco de dados Virtuoso</H1>
 
         <TABLE BORDER="1">
             <TR>
