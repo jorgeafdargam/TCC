@@ -1,5 +1,6 @@
 package control;
 
+import model.DAOVirtuoso;
 import virtuoso.jena.driver.VirtGraph;
 import virtuoso.jena.driver.VirtuosoQueryExecution;
 import virtuoso.jena.driver.VirtuosoQueryExecutionFactory;

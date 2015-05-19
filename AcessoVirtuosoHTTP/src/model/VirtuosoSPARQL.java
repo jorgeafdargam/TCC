@@ -1,51 +1,29 @@
-/*
- *  $Id: VirtuosoSPARQLExample8.java,v 1.2 2008/06/19 07:39:35 source Exp $
- *
- *  This file is part of the OpenLink Software Virtuoso Open-Source (VOS)
- *  project.
- *
- *  Copyright (C) 1998-2008 OpenLink Software
- *
- *  This project is free software; you can redistribute it and/or modify it
- *  under the terms of the GNU General Public License as published by the
- *  Free Software Foundation; only version 2 of the License, dated June 1991.
- *
- *  This program is distributed in the hope that it will be useful, but
- *  WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- *  General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License along
- *  with this program; if not, write to the Free Software Foundation, Inc.,
- *  51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
- *
- */
 
 package model;
 
+import bean.BeanTripla;
+
 import com.hp.hpl.jena.query.*;
-import control.DAOVirtuoso;
+
 import control.ExibeGrafo;
 import control.LimpaGrafo;
 import view.ExibeGrafoConsole;
 import virtuoso.jena.driver.*;
 
 public class VirtuosoSPARQL {
+	private ResultSet results;
 	
-	public VirtuosoSPARQL(String sujeito, String predicado, String objeto) {
-		String suj = sujeito;
-		String pred = predicado;
-		String obj = objeto;
+	public VirtuosoSPARQL(BeanTripla bean) {
 		String str = null;
 		VirtuosoUpdateRequest vur = null;
 
 		VirtGraph set = DAOVirtuoso.DAO_Virtuoso();
 		LimpaGrafo.Limpa_Grafo(set);            
  
-		System.out.println("\nexecute: INSERT INTO GRAPH <http://test1> { Sujeito: " + suj 
-				+ ". Predicado: " + pred 
-				+ ". Objeto: " + obj + " }");
-		str = "INSERT INTO GRAPH <http://test1> { <" + suj + "> <" + pred + "> '" + obj + "' . }";
+		System.out.println("\nexecute: INSERT INTO GRAPH <http://test1> { Sujeito: " + bean.getSujeito() 
+				+ ". Predicado: " + bean.getPredicado() 
+				+ ". Objeto: " + bean.getObjeto() + " }");
+		str = "INSERT INTO GRAPH <http://test1> { <" + bean.getSujeito() + "> <" + bean.getPredicado() + "> '" + bean.getObjeto() + "' . }";
 		vur = VirtuosoUpdateFactory.create(str, set);
 		vur.exec();                  
 
@@ -53,7 +31,7 @@ public class VirtuosoSPARQL {
 		/*		Select all data in virtuoso	*/
 		
 		ExibeGrafo grafo = new ExibeGrafo();
-		ResultSet results = grafo.getResults();
+		this.results = grafo.getResults();
 		ExibeGrafoConsole.ExibeConsole(results);
 
 /*
@@ -74,5 +52,9 @@ public class VirtuosoSPARQL {
 		}
 
 */
+	}
+
+	public ResultSet getResults() {
+		return results;
 	}
 }
