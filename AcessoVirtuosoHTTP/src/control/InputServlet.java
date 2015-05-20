@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import view.ExibeGrafoWeb;
 import bean.BeanTripla;
 import model.VirtuosoSPARQL;
 
@@ -41,9 +42,12 @@ public class InputServlet extends HttpServlet {
 		
 		VirtuosoSPARQL virt = new VirtuosoSPARQL(bean);
 		
+		// passa o ResultSet para a classe java que gera a saída
+		ExibeGrafoWeb exibe = new ExibeGrafoWeb(virt.getResults(), response);
+		
 		// passa o ResultSet para o JSP view de saída
-		request.setAttribute("Results", virt.getResults());		
-		RequestDispatcher rd = request.getRequestDispatcher("/exibe.jsp");
-		rd.forward(request,response);
+		// request.setAttribute("Results", virt.getResults());		
+		// RequestDispatcher rd = request.getRequestDispatcher("/exibe.jsp");
+		// rd.forward(request,response);
 	}
 }
