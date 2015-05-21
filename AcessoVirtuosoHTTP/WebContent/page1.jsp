@@ -11,11 +11,11 @@
 		<h3>Formulário para inserção de dados no Virtuoso</h3>
 		<p>Coloque apenas letras, exemplo: aa, bb, cc</p><br/>
 		<label for="sujeito">Sujeito:</label>
-		<input type="text" id="sujeito" name="sujeito" /> <br/> 
+		<input type="text" id="sujeito" name="sujeito" value="aa" /> <br/> 
 		<label for="predicado">Predicado:</label>
-		<input type="text" id="predicado" name="predicado" /> <br/> 
+		<input type="text" id="predicado" name="predicado" value="bb" /> <br/> 
 		<label for="objeto">Objeto:</label>
-		<input type="text" id="objeto" name="objeto" /> <br/>  
+		<input type="text" id="objeto" name="objeto" value="cc" /> <br/>  
 		<input type="submit" title="Entrar no Sistema" value="Enviar" /> <br/>
 		</form>
 </body>

@@ -11,7 +11,6 @@ import virtuoso.jena.driver.VirtuosoQueryExecution;
 import virtuoso.jena.driver.VirtuosoQueryExecutionFactory;
 import virtuoso.jena.driver.VirtuosoUpdateFactory;
 import virtuoso.jena.driver.VirtuosoUpdateRequest;
-import control.LimpaGrafo;
 
 public class DeleteSPARQL {
 	String suj = null;

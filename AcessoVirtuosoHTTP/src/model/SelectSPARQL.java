@@ -1,6 +1,5 @@
-package control;
+package model;
 
-import model.DAOVirtuoso;
 import virtuoso.jena.driver.VirtGraph;
 import virtuoso.jena.driver.VirtuosoQueryExecution;
 import virtuoso.jena.driver.VirtuosoQueryExecutionFactory;
@@ -9,10 +8,10 @@ import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryFactory;
 import com.hp.hpl.jena.query.ResultSet;
 
-public class ExibeGrafo {
+public class SelectSPARQL {
 	ResultSet results = null;
 	
-	public ExibeGrafo(){
+	public SelectSPARQL(){
 		this.exibe();
 	}
 

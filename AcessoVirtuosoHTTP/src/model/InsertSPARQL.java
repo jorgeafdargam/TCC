@@ -1,48 +1,46 @@
+
 package model;
 
-import virtuoso.jena.driver.VirtGraph;
-import virtuoso.jena.driver.VirtuosoQueryExecution;
-import virtuoso.jena.driver.VirtuosoQueryExecutionFactory;
-import virtuoso.jena.driver.VirtuosoUpdateFactory;
-import virtuoso.jena.driver.VirtuosoUpdateRequest;
+import bean.BeanTripla;
 
-import com.hp.hpl.jena.query.Query;
-import com.hp.hpl.jena.query.QueryFactory;
-import com.hp.hpl.jena.query.QuerySolution;
-import com.hp.hpl.jena.query.ResultSet;
-import com.hp.hpl.jena.rdf.model.RDFNode;
+import com.hp.hpl.jena.query.*;
 
-import control.LimpaGrafo;
+import view.ExibeGrafoConsole;
+import virtuoso.jena.driver.*;
 
 public class InsertSPARQL {
-	private String suj = null;
-	private String pred = null;
-	private String obj = null;
-	private String str = null;
-	private VirtuosoUpdateRequest vur = null;
+	private ResultSet results;
+	
+	public InsertSPARQL(BeanTripla bean, VirtGraph dao) {
+		String str = null;
+		VirtuosoUpdateRequest vur = null;
 
-	public InsertSPARQL(String suj, String pred, String obj){
-		this.suj = suj;
-		this.pred = pred;
-		this.obj = obj;
-		this.insert();
-	}
+		// VirtGraph set = DAOVirtuoso.DAO_Virtuoso();
+		// LimpaGrafo.Limpa_Grafo(set);            
+ 
+		System.out.println("\nexecute: INSERT INTO GRAPH <http://test1> { Sujeito: " + bean.getSujeito() 
+				+ ". Predicado: " + bean.getPredicado() 
+				+ ". Objeto: " + bean.getObjeto() + " }");
+		str = "INSERT INTO GRAPH <http://test1> { <" + bean.getSujeito() + "> <" + bean.getPredicado() + "> '" + bean.getObjeto() + "' . }";
+		vur = VirtuosoUpdateFactory.create(str, dao);
+		vur.exec();                  
 
-	public void insert(){
-		VirtGraph set = DAOVirtuoso.DAO_Virtuoso();
-		//LimpaGrafo.Limpa_Grafo(set);            
+		/*			STEP 3			*/
+		/*		Select all data in virtuoso	*/
+		
+		SelectSPARQL grafo = new SelectSPARQL();
+		this.results = grafo.getResults();
+		ExibeGrafoConsole.ExibeConsole(results);
 
-		System.out.println("\nexecute: INSERT INTO GRAPH <http://test1> { Sujeito: " + suj 
-				+ ". Predicado: " + pred 
-				+ ". Objeto: " + obj + " }");
-		str = "INSERT INTO GRAPH <http://test1> { <" + suj + "> <" + pred + "> '" + obj + "' . }";
+/*
+		System.out.println("\nexecute: DELETE FROM GRAPH <http://test1> { <aa> <bb> 'cc' }");
+		str = "DELETE FROM GRAPH <http://test1> { <aa> <bb> 'cc' }";
 		vur = VirtuosoUpdateFactory.create(str, set);
 		vur.exec();                  
 
 		System.out.println("\nexecute: SELECT * FROM <http://test1> WHERE { ?s ?p ?o }");
-		Query sparql = QueryFactory.create("SELECT * FROM <http://test1> WHERE { ?s ?p ?o }");
-		VirtuosoQueryExecution vqe = VirtuosoQueryExecutionFactory.create (sparql, set);
-		ResultSet results = vqe.execSelect();
+		vqe = VirtuosoQueryExecutionFactory.create (sparql, set);
+		results = vqe.execSelect();
 		while (results.hasNext()) {
 			QuerySolution rs = results.nextSolution();
 			RDFNode s = rs.get("s");
@@ -50,5 +48,11 @@ public class InsertSPARQL {
 			RDFNode o = rs.get("o");
 			System.out.println(" { " + s + " " + p + " " + o + " . }");
 		}
+
+*/
+	}
+
+	public ResultSet getResults() {
+		return results;
 	}
 }
