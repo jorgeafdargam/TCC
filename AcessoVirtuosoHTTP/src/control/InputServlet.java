@@ -63,7 +63,8 @@ public class InputServlet extends HttpServlet {
 		
 		// exibe os valores no console
 		ResultSet results = selecao.getResults();
-		ExibeGrafoConsole.ExibeConsole(results);
+		// O objeto results so executa uma vez, depois o conteudo e apagado
+		//ExibeGrafoConsole.ExibeConsole(results);
 		
 		// passa o ResultSet para a classe java que gera a saída
 		ExibeGrafoWeb exibe = new ExibeGrafoWeb(results, response);

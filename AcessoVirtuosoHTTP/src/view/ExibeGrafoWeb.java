@@ -24,17 +24,15 @@ public class ExibeGrafoWeb extends HttpServlet{
 		out.println("<h2>Sistema de Busca Semântica</h2><br/>");
 
 		while (results.hasNext()) {
-			System.out.println("Entrou no laço while.");
 			QuerySolution rs = results.nextSolution();
 			RDFNode s = rs.get("s");
-			out.println("Sujeito: " + s); 
+			out.println("Sujeito: " + s + "<br/>"); 
 			RDFNode p = rs.get("p");
-			out.println("Predicado: " + p);
+			out.println("Predicado: " + p + "<br/>");
 			RDFNode o = rs.get("o");
-			out.println("Objeto: " + o); 
+			out.println("Objeto: " + o + "<br/>"); 
 		}
 		
-		System.out.println("Verificaçao.");
 		out.println("</body></html>");
 		out.close();
 	}
