@@ -34,6 +34,7 @@ public class ExibeGrafoWeb extends HttpServlet{
 			out.println("Objeto: " + o); 
 		}
 		
+		System.out.println("Verificaçao.");
 		out.println("</body></html>");
 		out.close();
 	}

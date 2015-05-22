@@ -10,12 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.hp.hpl.jena.query.ResultSet;
+
+import view.ExibeGrafoConsole;
 import view.ExibeGrafoWeb;
 import virtuoso.jena.driver.VirtGraph;
 import bean.BeanTripla;
 import model.DAOVirtuoso;
 import model.InsertSPARQL;
 import model.LimpaGrafo;
+import model.SelectSPARQL;
 
 @WebServlet("/InputServlet")
 public class InputServlet extends HttpServlet {
@@ -48,23 +52,21 @@ public class InputServlet extends HttpServlet {
 				". O predicado é: " + bean.getPredicado() + 
 				". O objeto é: " + bean.getObjeto());
 		
-		// insere sujeito, predicado e objeto do bean no Virtuoso
-		InsertSPARQL virt = new InsertSPARQL(bean, dao);
-		
 		// limpa o grafo
 		LimpaGrafo.Limpa_Grafo(dao); 
 		
-		// insere sujeito, predicado e objeto no grafo
-		
+		// insere sujeito, predicado e objeto do bean no Virtuoso
+		InsertSPARQL virt = new InsertSPARQL(bean, dao);	
 		
 		// realiza um select no Virtuoso
-		
+		SelectSPARQL selecao = new SelectSPARQL();
 		
 		// exibe os valores no console
-		
+		ResultSet results = selecao.getResults();
+		ExibeGrafoConsole.ExibeConsole(results);
 		
 		// passa o ResultSet para a classe java que gera a saída
-		//ExibeGrafoWeb exibe = new ExibeGrafoWeb(virt.getResults(), response);
+		ExibeGrafoWeb exibe = new ExibeGrafoWeb(results, response);
 		
 		// passa o ResultSet para o JSP view de saída
 		// request.setAttribute("Results", virt.getResults());		
